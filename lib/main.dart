@@ -1,30 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:english_words/english_words.dart';
+import 'components/menu.dart';
+import 'components/randomWords.dart';
 
 void main() {
   runApp(MaterialApp(
+    theme: ThemeData(
+        // Define the default Brightness and Colors
+        brightness: Brightness.dark,
+        primaryColor: Colors.white,
+        accentColor: Colors.white,
+
+        // Define the default Font Family
+        fontFamily: 'Montserrat',
+
+        // Define the default TextTheme. Use this to specify the default
+        // text styling for headlines, titles, bodies of text, and more.
+        textTheme: TextTheme(
+          headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+          title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+          body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+        ),
+      ),
     title: 'Named Routes Demo',
     // Start the app with the "/" named route. In our case, the app will start
-    // on the FirstScreen Widget
+    // on the HomeScreen Widget
     initialRoute: '/',
     routes: {
-      // When we navigate to the "/" route, build the FirstScreen Widget
-      '/': (context) => FirstScreen(),
+      // When we navigate to the "/" route, build the HomeScreen Widget
+      '/': (context) => HomeScreen(),
       // When we navigate to the "/second" route, build the SecondScreen Widget
       '/second': (context) => SecondScreen(),
     },
   ));
 }
 
-class FirstScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First sd'),
+        title: Text('Home'),
       ),
       body: Center(
         child: RaisedButton(
-          child: Text('Send it'),
+          child: RandomWords(),
           onPressed: () {
             // Navigate to the second screen using a named route
             Navigator.pushNamed(context, '/second');
@@ -70,18 +90,19 @@ class FirstScreen extends StatelessWidget {
   }
 }
 
-class SecondScreen extends StatelessWidget {
+class RandomWords extends StatefulWidget {
   @override
+  RandomWordsState createState() => new RandomWordsState();
+}
+
+
+
+class RandomWordsState extends State<RandomWords> {
+  @override
+  final _suggestions = <WordPair>[];  //enforces privacy
+  final _biggerFont = const TextStyle(fontSize: 18.0);
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Screen"),
-      ),
-      body: Center(
-        child: Image.network(
-        'https://picsum.photos/250?image=9',
-        ),
-      ),
-    );
+    final wordPair = WordPair.random();
+    return Text(wordPair.asPascalCase);
   }
 }
