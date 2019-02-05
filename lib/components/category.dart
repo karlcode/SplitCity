@@ -52,9 +52,7 @@ class Category extends StatelessWidget {
           splashColor: color,
           // We can use either the () => function() or the () { function(); }
           // syntax.
-          onTap: () {
-            Scaffold.of(context).showSnackBar(SnackBar(content: Text('Hi Karl'),));
-          },
+          onTap: () => print("onTap called."),
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Row(
