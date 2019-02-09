@@ -42,6 +42,8 @@ class Category extends StatelessWidget {
   // Theme ancestor in the tree. Below, we obtain the display1 text theme.
   // See https://docs.flutter.io/flutter/material/Theme-class.html
   Widget build(BuildContext context) {
+    
+
     return Material(
       color: Colors.transparent,
       child: Container(
@@ -52,7 +54,10 @@ class Category extends StatelessWidget {
           splashColor: color,
           // We can use either the () => function() or the () { function(); }
           // syntax.
-          onTap: () => print("onTap called."),
+          onTap: () {
+            print("onTap called.");
+            _navigateToConverter(context);
+            },
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Row(
@@ -83,4 +88,19 @@ class Category extends StatelessWidget {
       ),
     );
   }
+}
+void _navigateToConverter(BuildContext context) {
+  if(Navigator.of(context).canPop()) {
+    Navigator.of(context).pop();
+  }
+  Navigator.of(context).push(MaterialPageRoute<Null>(
+    builder: (BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 1.0, 
+        title: Text('hello'),
+      )
+    );
+  },
+  ));
 }
