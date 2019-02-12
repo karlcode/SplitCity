@@ -5,8 +5,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:myapp/components/category.dart';
+import 'package:myapp/components/unit.dart';
 
-final _backgroundColor = Colors.pink[100];
+final _backgroundColor = Colors.green[100];
 
 /// Category Route (screen).
 ///
@@ -15,8 +16,28 @@ final _backgroundColor = Colors.pink[100];
 ///
 /// While it is named CategoryRoute, a more apt name would be CategoryScreen,
 /// because it is responsible for the UI at the route's destination.
+// TODO: Make CategoryRoute a StatefulWidget
+// class _CategoryRouteState extends State<CategoryRoute> {  //underscore = private class   stores the widgets state
+//   var color = Colors.purple;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: Text('hi'),
+//     );
+//   }
+// }
+
 class CategoryRoute extends StatelessWidget {
-  const CategoryRoute();
+  // final String color;
+  // const CategoryRoute({
+  //   this.color
+  // });
+
+  // TODO: Create State object for the CategoryRoute
+
+  // @override
+  // createState() => _CategoryRouteState();
 
   static const _categoryNames = <String>[
     'Length',
@@ -42,26 +63,32 @@ class CategoryRoute extends StatelessWidget {
 
   /// Makes the correct number of rows for the list view.
   ///
-  /// For portrait, we construct a [ListView] from the list of category widgets.
-
+  /// For portrait, we use a [ListView].
   Widget _buildCategoryWidgets(List<Widget> categories) {
-    void onTapped() {
-    print("onTap called.");
-}
     return ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        var cats = categories[index];
-        return ListTile(
-          title: categories[index],
-          onTap: () => print("sd called."),
-        );
-        },
+      itemBuilder: (BuildContext context, int index) => categories[index],
       itemCount: categories.length,
     );
   }
 
+  /// Returns a list of mock [Unit]s.
+  List<Unit> _retrieveUnitList(String categoryName) {
+    return List.generate(10, (int i) {
+      i += 1;
+      return Unit(
+        name: '$categoryName Unit $i',
+        conversion: i.toDouble(),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    // TODO: Instead of re-creating a list of Categories in every build(),
+    // save this as a variable inside the State object and create
+    // the list at initialization (in initState()).
+    // This way, you also don't have to pass in the list of categories to
+    // _buildCategoryWidgets()
     final categories = <Category>[];
 
     for (var i = 0; i < _categoryNames.length; i++) {
@@ -69,6 +96,7 @@ class CategoryRoute extends StatelessWidget {
         name: _categoryNames[i],
         color: _baseColors[i],
         iconLocation: Icons.cake,
+        units: _retrieveUnitList(_categoryNames[i]),
       ));
     }
 
@@ -85,7 +113,6 @@ class CategoryRoute extends StatelessWidget {
         style: TextStyle(
           color: Colors.black,
           fontSize: 30.0,
-          fontFamily: 'Roboto'
         ),
       ),
       centerTitle: true,
