@@ -58,7 +58,7 @@ class CategoryRoute extends StatelessWidget {
     Colors.yellow,
     Colors.greenAccent,
     Colors.purpleAccent,
-    Colors.red,
+    Colors.blue,
   ];
 
   /// Makes the correct number of rows for the list view.
@@ -84,7 +84,7 @@ class CategoryRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Instead of re-creating a list of Categories in every build(),
+    // TODO: Instead of re-creating a list of Categorieas in every build(),
     // save this as a variable inside the State object and create
     // the list at initialization (in initState()).
     // This way, you also don't have to pass in the list of categories to
