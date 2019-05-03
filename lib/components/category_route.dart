@@ -52,7 +52,7 @@ class CategoryRoute extends StatelessWidget {
 
   static const _baseColors = <Color>[
     Colors.teal,
-    Colors.orange,
+    Colors.amberAccent,
     Colors.pinkAccent,
     Colors.blueAccent,
     Colors.yellow,
@@ -95,7 +95,7 @@ class CategoryRoute extends StatelessWidget {
       categories.add(Category(
         name: _categoryNames[i],
         color: _baseColors[i],
-        iconLocation: Icons.cake,
+        iconLocation: Icons.add_a_photo,
         units: _retrieveUnitList(_categoryNames[i]),
       ));
     }
