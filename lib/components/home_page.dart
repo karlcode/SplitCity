@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/components/category.dart';
 import 'package:myapp/components/unit.dart';
 
-final _backgroundColor = Colors.green[100];
+final _backgroundColor = Colors.green;
 
 /// Category Route (screen).
 ///
@@ -28,7 +28,7 @@ final _backgroundColor = Colors.green[100];
 //   }
 // }
 
-class CategoryRoute extends StatelessWidget {
+class HomePage extends StatelessWidget {
   // final String color;
   // const CategoryRoute({
   //   this.color
@@ -107,7 +107,7 @@ class CategoryRoute extends StatelessWidget {
     );
 
     final appBar = AppBar(
-      elevation: 0.0,
+      elevation: 0,
       title: Text(
         'Unit Converter',
         style: TextStyle(
